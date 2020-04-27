@@ -9,9 +9,9 @@ author:Anirudh pandey
 ////SHORT CODE STARTED//
 define("SLIDER_PLUGIN_PLUGIN_DIR_PATH",plugin_dir_path(__FILE__));
 
-add_shortcode("slider","Slider_plugin_1");
-add_shortcode("slider1","Slider_plugin_2");
-add_shortcode("slider2","Slider_plugin_3");
+add_shortcode("slidername","Slider_plugin_1");
+add_shortcode("slidername1","Slider_plugin_2");
+add_shortcode("slidername2","Slider_plugin_3");
 
 function slider_main($author)
 {

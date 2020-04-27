@@ -222,7 +222,7 @@ function task_book_category_taxonomy(){
         $labels=array(
                 'name'=>__('slider'),
                 'singular_name'=>__('slider'),
-                'menu_name'=>__('slider'),
+                'menu_name'=>__('slider name'),
                 'all_items'=>__('All slide','book'),
                 'parent_item'=>__('Parent slide','book'),
                 'parent_item_colon'=>__('Parent slide:','book'),

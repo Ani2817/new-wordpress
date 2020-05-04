@@ -1,0 +1,36 @@
+2020-05-03T14:49:31+00:00 CRITICAL Uncaught Error: Call to a member function is_on_sale() on string in C:\xampp\htdocs\new-wordpress\wp-content\plugins\woocommerce\templates\single-product\sale-flash.php:25
+Stack trace:
+#0 C:\xampp\htdocs\new-wordpress\wp-content\plugins\woocommerce\includes\wc-core-functions.php(251): include()
+#1 C:\xampp\htdocs\new-wordpress\wp-content\plugins\woocommerce\includes\wc-template-functions.php(1565): wc_get_template('single-product/...')
+#2 C:\xampp\htdocs\new-wordpress\wp-includes\class-wp-hook.php(287): woocommerce_show_product_sale_flash('')
+#3 C:\xampp\htdocs\new-wordpress\wp-includes\class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#4 C:\xampp\htdocs\new-wordpress\wp-includes\plugin.php(478): WP_Hook->do_action(Array)
+#5 C:\xampp\htdocs\new-wordpress\wp-content\plugins\woocommerce\templates\content-single-product.php(43): do_action('woocommerce_bef...')
+#6 C:\xampp\htdocs\new-wordpress\wp-includes\template.php(725): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\new-wordpress\wp-content\plugin in C:\xampp\htdocs\new-wordpress\wp-content\plugins\woocommerce\templates\single-product\sale-flash.php on line 25
+
+2020-05-03T16:21:44+00:00 CRITICAL syntax error, unexpected '<' in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\functions.php on line 342
+
+2020-05-03T16:22:13+00:00 CRITICAL syntax error, unexpected 'EXEMPTED' (T_STRING) in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\functions.php on line 342
+
+2020-05-03T16:25:39+00:00 CRITICAL syntax error, unexpected '<', expecting end of file in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\woocommerce\single-product\tax_excempt.php on line 22
+
+2020-05-03T16:50:52+00:00 CRITICAL syntax error, unexpected ''/single-product-altered.css )' (T_ENCAPSED_AND_WHITESPACE) in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\functions.php on line 351
+
+2020-05-03T19:42:55+00:00 CRITICAL syntax error, unexpected '?>', expecting variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\woocommerce\single-product\short-description.php on line 35
+
+2020-05-03T20:12:35+00:00 CRITICAL syntax error, unexpected '>' in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\woocommerce\single-product\short-description.php on line 38
+
+2020-05-03T20:45:40+00:00 CRITICAL syntax error, unexpected '<', expecting end of file in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\woocommerce\single-product\short-description.php on line 41
+
+2020-05-03T21:13:37+00:00 CRITICAL Uncaught Error: Object of class DOMElement could not be converted to string in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\woocommerce\single-product\short-description.php:52
+Stack trace:
+#0 C:\xampp\htdocs\new-wordpress\wp-content\plugins\woocommerce\includes\wc-core-functions.php(251): include()
+#1 C:\xampp\htdocs\new-wordpress\wp-content\plugins\woocommerce\includes\wc-template-functions.php(1538): wc_get_template('single-product/...')
+#2 C:\xampp\htdocs\new-wordpress\wp-includes\class-wp-hook.php(287): woocommerce_template_single_excerpt('')
+#3 C:\xampp\htdocs\new-wordpress\wp-includes\class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#4 C:\xampp\htdocs\new-wordpress\wp-includes\plugin.php(478): WP_Hook->do_action(Array)
+#5 C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\woocommerce\content-single-product.php(60): do_action('woocommerce_sin...')
+#6 C:\xampp\htdocs\new-wordpress\wp-includes\template.php(725): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\new in C:\xampp\htdocs\new-wordpress\wp-content\themes\twentynineteen\woocommerce\single-product\short-description.php on line 52
+

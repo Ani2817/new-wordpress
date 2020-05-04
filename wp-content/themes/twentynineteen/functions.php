@@ -323,3 +323,39 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+function mytheme_add_woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+
+add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_title', 5 );
+add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_price', 10 );
+add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_add_to_cart', 11 );
+add_action( 'woocommerce_single_product_summary_1', 'tax_excempt', 12 );
+add_action( 'woocommerce_single_product_summary_1', 'social_icons', 13 );
+add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_excerpt', 20 );
+add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_meta', 40 );
+add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_sharing', 50 );
+
+add_action( 'woocommerce_after_single_product_summary_1', 'summary_remaining', 10 );
+add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_output_product_data_tabs', 10 );
+add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_upsell_display', 15 );
+add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_output_related_products', 20 );
+
+function tax_excempt()
+{
+	wc_get_template( 'single-product/tax_excempt.php' );
+}
+
+function social_icons()
+{
+	wc_get_template( 'single-product/social_icons.php' );
+}
+
+function summary_remaining()
+{
+	wc_get_template( 'single-product/summary_remaining.php' );
+}
+
+wp_enqueue_style( 'Single Product Altered CSS',  get_template_directory_uri() . '/single-product-altered.css' );

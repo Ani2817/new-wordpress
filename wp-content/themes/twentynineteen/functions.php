@@ -331,7 +331,7 @@ add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 
 add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_title', 5 );
 add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_price', 10 );
-add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_add_to_cart', 11 );
+add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_add_to_cart', 10 );
 add_action( 'woocommerce_single_product_summary_1', 'tax_excempt', 12 );
 add_action( 'woocommerce_single_product_summary_1', 'social_icons', 13 );
 add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_excerpt', 20 );
@@ -339,9 +339,13 @@ add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single
 add_action( 'woocommerce_single_product_summary_1', 'woocommerce_template_single_sharing', 50 );
 
 add_action( 'woocommerce_after_single_product_summary_1', 'summary_remaining', 10 );
-add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_output_product_data_tabs', 10 );
+add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_output_product_data_tabs_1', 10 );
 add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_upsell_display', 15 );
-add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_output_related_products', 20 );
+add_action( 'woocommerce_after_single_product_summary_1', 'woocommerce_output_related_products_1', 20 );
+
+function woocommerce_output_product_data_tabs_1() {
+		wc_get_template( 'single-product/tabs/tabs.php' );
+	}
 
 function tax_excempt()
 {
@@ -357,5 +361,61 @@ function summary_remaining()
 {
 	wc_get_template( 'single-product/summary_remaining.php' );
 }
+
+function woocommerce_output_related_products_1() {
+
+		$args = array(
+			'posts_per_page' => 2,
+			'columns'        => 4,
+			'orderby'        => 'rand', // @codingStandardsIgnoreLine.
+		);
+
+		woocommerce_related_products_1( $args );
+}
+
+function woocommerce_related_products_1( $args = array() ) {
+		global $product;
+
+		if ( ! $product ) {
+			return;
+		}
+
+		$defaults = array(
+			'posts_per_page' => 2,
+			'columns'        => 2,
+			'orderby'        => 'rand', // @codingStandardsIgnoreLine.
+			'order'          => 'desc',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		// Get visible related products then sort them at random.
+		$args['related_products'] = array_filter( array_map( 'wc_get_product', wc_get_related_products( $product->get_id(), $args['posts_per_page'], $product->get_upsell_ids() ) ), 'wc_products_array_filter_visible' );
+
+		// Handle orderby.
+		$args['related_products'] = wc_products_array_orderby( $args['related_products'], $args['orderby'], $args['order'] );
+
+		// Set global loop values.
+		wc_set_loop_prop( 'name', 'related' );
+		wc_set_loop_prop( 'columns', $args['columns'] );
+
+		wc_get_template( 'single-product/related_1.php', $args );
+}
+
+function woocommerce_product_loop_start_1( $echo = true ) {
+		ob_start();
+
+		wc_set_loop_prop( 'loop', 0 );
+
+		wc_get_template( 'single-product/loop-start.php' );
+
+		$loop_start = apply_filters( 'woocommerce_product_loop_start', ob_get_clean() );
+
+		if ( $echo ) {
+			echo $loop_start; // WPCS: XSS ok.
+		} else {
+			return $loop_start;
+		}
+	}
 
 wp_enqueue_style( 'Single Product Altered CSS',  get_template_directory_uri() . '/single-product-altered.css' );

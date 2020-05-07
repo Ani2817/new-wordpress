@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <ul class="product-social-share">
-	<li><a target="_blank" class="email" href="#"></a></li>
-	<li><a target="_blank" class="facebook" href="#"></a></li>
-	<li><a target="_blank" class="twitter" href="#"></a></li>
-	<li><a target="_blank" class="pinterest" href="#"></a></li>
+	<li style="list-style: none"><a target="_blank" class="email" href="#"></a></li>
+	<li style="list-style: none"><a target="_blank" class="facebook" href="#"></a></li>
+	<li style="list-style: none"><a target="_blank" class="twitter" href="#"></a></li>
+	<li style="list-style: none"><a target="_blank" class="pinterest" href="#"></a></li>
 </ul>

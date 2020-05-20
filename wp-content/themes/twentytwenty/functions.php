@@ -758,3 +758,121 @@ function twentytwenty_get_elements_array() {
 	*/
 	return apply_filters( 'twentytwenty_get_elements_array', $elements );
 }
+
+
+add_action('init','create_neighborhood');
+
+function create_neighborhood(){
+
+	$labels = array(
+		'name'              => _x( 'neighborhood', 'taxonomy general name', 'textdomain' ),
+		'singular_name'     => _x( 'neighborhood', 'taxonomy singular name', 'textdomain' ),
+		'search_items'      => __( 'Search neighborhoods', 'textdomain' ),
+		'all_items'         => __( 'All neighborhoods', 'textdomain' ),
+		'parent_item'       => __( 'Parent neighborhood', 'textdomain' ),
+		'parent_item_colon' => __( 'Parent neighborhood:', 'textdomain' ),
+		'edit_item'         => __( 'Edit neighborhood', 'textdomain' ),
+		'update_item'       => __( 'Update neighborhood', 'textdomain' ),
+		'add_new_item'      => __( 'Add New neighborhood', 'textdomain' ),
+		'new_item_name'     => __( 'New neighborhood Name', 'textdomain' ),
+		'menu_name'         => __( 'neighborhood', 'textdomain' ),
+	);
+
+	register_taxonomy(
+		'neighborhood',
+		'post',
+		array(
+			'label'=>__('neighborhood'),
+			'labels'=>$labels,
+			'rewrite'=>array('slug'=>'neighborhood'),
+			'hierarchical'=>true,
+		)
+	);
+}
+/////////////////////////////////////////////////////////////////
+
+add_action('init','create_price');
+function create_price(){
+	$labels = array(
+		'name'              => _x( 'price', 'taxonomy general name', 'textdomain' ),
+		'singular_name'     => _x( 'price', 'taxonomy singular name', 'textdomain' ),
+		'search_items'      => __( 'Search prices', 'textdomain' ),
+		'all_items'         => __( 'All prices', 'textdomain' ),
+		'parent_item'       => __( 'Parent price', 'textdomain' ),
+		'parent_item_colon' => __( 'Parent price:', 'textdomain' ),
+		'edit_item'         => __( 'Edit price', 'textdomain' ),
+		'update_item'       => __( 'Update price', 'textdomain' ),
+		'add_new_item'      => __( 'Add New price', 'textdomain' ),
+		'new_item_name'     => __( 'New price Name', 'textdomain' ),
+		'menu_name'         => __( 'price', 'textdomain' ),
+	);
+
+	register_taxonomy(
+		'price',
+		'post',
+		array(
+			'label'=>__('price'),
+			'labels'=>$labels,
+			'rewrite'=>array('slug'=>'price'),
+			'hierarchical'=>true,
+		)
+	);
+}
+//////////////////////////////////////////////////////////////
+add_action('init','create_location');
+function create_location(){
+	$labels = array(
+		'name'              => _x( 'location', 'taxonomy general name', 'textdomain' ),
+		'singular_name'     => _x( 'location', 'taxonomy singular name', 'textdomain' ),
+		'search_items'      => __( 'Search locations', 'textdomain' ),
+		'all_items'         => __( 'All locations', 'textdomain' ),
+		'parent_item'       => __( 'Parent location', 'textdomain' ),
+		'parent_item_colon' => __( 'Parent location:', 'textdomain' ),
+		'edit_item'         => __( 'Edit location', 'textdomain' ),
+		'update_item'       => __( 'Update location', 'textdomain' ),
+		'add_new_item'      => __( 'Add New location', 'textdomain' ),
+		'new_item_name'     => __( 'New location Name', 'textdomain' ),
+		'menu_name'         => __( 'location', 'textdomain' ),
+	);
+
+	register_taxonomy(
+		'location',
+		'post',
+		array(
+			'label'=>__('location'),
+			'labels'=>$labels,
+			'rewrite'=>array('slug'=>'location'),
+			'hierarchical'=>true,
+		)
+	);
+}
+
+
+
+function cd_meta_box_add()
+{
+    add_meta_box( 'my-meta-box', 'URL','cd_meta_box_cb', 'post', 'side', 'high' );
+}
+
+add_action( 'add_meta_boxes', 'cd_meta_box_add' );
+
+function cd_meta_box_cb()
+{
+    ?>
+    <label>Enter URL</label>
+    <input type="text" value="" name="txturl" placeholder="enter url" />
+    
+    <?php    
+}
+
+
+
+function wpl_owt_cpt_save_values($post_id){
+
+        $txturl = isset($_POST['txturl']) ? $_POST['txturl']:"";
+
+        update_post_meta($post_id,"wpl_url",$txturl);
+}
+
+
+add_action("save_post","wpl_owt_cpt_save_values",10,2);
